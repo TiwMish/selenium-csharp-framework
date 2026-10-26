@@ -9,7 +9,16 @@ public class CartPage : BasePage
 
     public CartPage(IWebDriver driver) : base(driver) { }
 
-    public int ItemCount => Driver.FindElements(CartItems).Count;
+    public int ItemCount
+    {
+        get
+        {
+            // Wait for the cart page to load before counting, otherwise
+            // the count can be read as 0 on a fast headless run.
+            Find(CartItems);
+            return Driver.FindElements(CartItems).Count;
+        }
+    }
 
     public CheckoutPage Checkout()
     {
