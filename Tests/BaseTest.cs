@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
 
 namespace SeleniumCSharpFramework.Tests;
 
@@ -13,7 +11,10 @@ public abstract class BaseTest
     [SetUp]
     public void SetUp()
     {
-        new DriverManager().SetUpDriver(new ChromeConfig());
+        // No WebDriverManager: Selenium Manager (built into Selenium WebDriver)
+        // downloads the ChromeDriver that matches the Chrome installed on the
+        // runner. WebDriverManager pinned a driver for Chrome 156, which the
+        // runner did not have, causing "session not created" in CI.
         var options = new ChromeOptions();
         options.AddArgument("--headless=new");
         options.AddArgument("--no-sandbox");

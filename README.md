@@ -16,7 +16,7 @@ credentials. Demo users are the ones SauceDemo publishes publicly
 dotnet test
 ```
 
-Chrome is managed by WebDriverManager, so no manual driver download is needed.
+ChromeDriver is managed by Selenium Manager (built into Selenium WebDriver), so no manual driver download is needed and the driver always matches the installed Chrome version.
 GitHub Actions runs `dotnet test` on every push / pull request (see
 `.github/workflows/ci.yml` — add this file manually on GitHub if the
 GitHub App cannot push workflow files).
