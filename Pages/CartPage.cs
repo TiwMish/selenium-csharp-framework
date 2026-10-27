@@ -4,7 +4,9 @@ namespace SeleniumCSharpFramework.Pages;
 
 public class CartPage : BasePage
 {
-    private static readonly By CheckoutButton = By.Id("checkout-button");
+    // SauceDemo cart checkout button is id="checkout" (data-test="checkout"),
+    // not "checkout-button" — the old selector timed out after 10s in CI.
+    private static readonly By CheckoutButton = By.CssSelector("[data-test='checkout']");
     private static readonly By CartItems = By.ClassName("cart_item");
 
     public CartPage(IWebDriver driver) : base(driver) { }
